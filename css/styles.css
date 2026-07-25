@@ -743,7 +743,7 @@ h1 {
     height: 100%;
   }
   .current-time {
-    width: 50%;
+    width: 0%;
   }
   .current-time {
     --tw-bg-opacity: 1;
@@ -799,8 +799,12 @@ h1 {
 }
 
 .like {
-  --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity));
+  color: rgb(161 161 170);
+  transition: color 0.2s ease; 
+}
+
+.like.active {
+  color: rgb(239 68 68);
 }
 
 .controls {
