@@ -13,6 +13,7 @@ const artistName = document.querySelector('.artist');
 const muteBtn = document.querySelector('.muteBtn');
 const muteIcon = document.querySelector('.muteIcon');
 
+const playlist = [];
 const musics = [
     {id:1 , title:"پژواک های نیمه شب" , src:"./audios/1.mp3" , cover:"./images/1.jpg" , singer:"لونا اسکای", isLiked:false},
     {id:2 , title:"امواج فردا" , src:"./audios/2.mp3" , cover:"./images/2.jpg" , singer:"افق نقره ای", isLiked:false},
@@ -25,8 +26,7 @@ const musics = [
 let currentPlayingMusic = null;
 let musicVolume = 1;
 
-if (muteBtn) {
-    muteBtn.addEventListener('click', function(){
+const muteBtnHandler = () => {
         if(muteIcon.classList.contains('fa-volume-up')){
             musicVolume = music.volume;
             muteIcon.classList.remove('fa-volume-up');
@@ -39,10 +39,8 @@ if (muteBtn) {
             music.volume = musicVolume;
             volume.style.width = `${music.volume * 100}px`;
         }
-    });
-}
-
-playButton.addEventListener('click', function(){
+};
+const playButtonHandler = () => {
     if(playIcon.classList.contains('fa-play')){
         music.play();
         playIcon.classList.remove("fa-play");
@@ -52,34 +50,29 @@ playButton.addEventListener('click', function(){
         playIcon.classList.remove("fa-pause");
         playIcon.classList.add("fa-play");
     }
-});
-
-volumeCard.addEventListener('click', function(event){
+};
+const volumeCardHandler = (event) => {
     music.volume = event.offsetX / 100;
     volume.style.width = `${event.offsetX}px`;
     if (muteIcon) {
         muteIcon.classList.remove('fa-volume-mute');
         muteIcon.classList.add('fa-volume-up');
     }
-});
-
-
-music.addEventListener('timeupdate', function () {
+};
+const musicHandler = () => {
     if (music.duration) {
         const progressPercent = (music.currentTime / music.duration) * 100;
         currentTime.style.width = `${progressPercent}%`;
     }
-});
-
-processBar.addEventListener('click', function (event) {
+};
+const processBarHandler = (event) => {
     const barWidth = processBar.clientWidth;
     const clickX = event.offsetX;
     if (music.duration) {
         music.currentTime = (clickX / barWidth) * music.duration;
     }
-});
-
-likeBtn.addEventListener('click', function () {
+};
+const likeBtnHandler = () => {
     if (currentPlayingMusic) {
         currentPlayingMusic.isLiked = !currentPlayingMusic.isLiked;
         if (currentPlayingMusic.isLiked) {
@@ -88,12 +81,11 @@ likeBtn.addEventListener('click', function () {
             likeBtn.classList.remove('active');
         }
     }
-});
-
-function showMusics(){
+};
+const showMusics = () => {
     const musicContainer = document.querySelector('.musics-container');
     musicContainer.innerHTML = '';
-    musics.forEach(function(musicObj){
+    musics.forEach((musicObj) => {
         musicContainer.insertAdjacentHTML('beforeend', 
             `
             <article class="music-card">
@@ -116,14 +108,12 @@ function showMusics(){
             </article>
             `);
     });
-
     setupPlayButtons();
-}
-
-function setupPlayButtons() {
+};
+const setupPlayButtons = () => {
     const playBtns = document.querySelectorAll(".play-btn");
-    playBtns.forEach(function(playBtn){
-        playBtn.addEventListener('click', function(){
+    playBtns.forEach(playBtn => {
+        playBtn.addEventListener('click', () => {
             const playOrPauseIcon = playBtn.querySelector('i');
             const mainMusicSrc = playBtn.dataset.src;
             if(playOrPauseIcon.classList.contains("fa-play")){
@@ -131,7 +121,7 @@ function setupPlayButtons() {
                 music.play();
                 playIcon.classList.remove("fa-play");
                 playIcon.classList.add("fa-pause");
-                currentPlayingMusic = musics.find(function(item) {
+                currentPlayingMusic = musics.find(item => {
                     return item.src === mainMusicSrc;
                 });
                 if (currentPlayingMusic) {
@@ -143,7 +133,7 @@ function setupPlayButtons() {
                         likeBtn.classList.remove('active');
                     }
                 };
-                playBtns.forEach(function(playBtn){
+                playBtns.forEach(playBtn => {
                     const playOrPauseIcon = playBtn.querySelector('i');
                     playOrPauseIcon.classList.remove('fa-pause');
                     playOrPauseIcon.classList.add('fa-play');
@@ -159,11 +149,9 @@ function setupPlayButtons() {
             }
         });
     });
-}
-
-const playlist = [];
-function addToPlaylist(musicId){
-    const mainMusic = musics.find(function(musicObj){
+};
+const addToPlaylist = (musicId) => {
+    const mainMusic = musics.find(musicObj => {
         return musicObj.id === musicId;
     });
     if (mainMusic){
@@ -177,14 +165,14 @@ function addToPlaylist(musicId){
         };
     };
 };
-function removeFromPlaylist(musicId) {
-    const mainMusic = musics.find(function (musicObj) {
+const removeFromPlaylist = (musicId) => {
+    const mainMusic = musics.find(musicObj => {
         return musicObj.id === musicId;
     });
     if (mainMusic) {
         mainMusic.isInPlayList = false;
     }
-    const musicIndex = playlist.findIndex(function (musicObj) {
+    const musicIndex = playlist.findIndex(musicObj => {
         return musicObj.id === musicId;
     });
     if (musicIndex !== -1) {
@@ -192,16 +180,15 @@ function removeFromPlaylist(musicId) {
     }
     showPlayList();
     showMusics();
-}
-
-function showPlayList(){
+};
+const showPlayList = () => {
     const playListContainer = document.querySelector('.playlist');
     playListContainer.innerHTML = '';
     if (playlist.length === 0) {
         playListContainer.innerHTML = 'موزیکی اضافه نشده';
         return;
     };
-    playlist.forEach(function(musicObj){
+    playlist.forEach(musicObj => {
         playListContainer.insertAdjacentHTML('beforeend', 
             `
             <article class="music-card">
@@ -226,38 +213,31 @@ function showPlayList(){
     });
     setupPlayButtons();
 };
-
-forwardBtn.addEventListener('click', function () {
-    let currentIndex = musics.findIndex(function (item) {
+const forwardBtnHandler = () => {
+    let currentIndex = musics.findIndex(item => {
         return item.src === music.getAttribute('src');
     });
-
     let nextIndex = 0;
     if (currentIndex < 0) {
         nextIndex = 0;
     } else {
         nextIndex = (currentIndex + 1) % musics.length;
     }
-
     let targetMusic = musics[nextIndex];
-
     music.src = targetMusic.src;
     music.play();
     currentPlayingMusic = targetMusic;
     musicName.textContent = targetMusic.title;
     artistName.textContent = targetMusic.singer;
-
     if (targetMusic.isLiked) {
         likeBtn.classList.add('active');
     } else {
         likeBtn.classList.remove('active');
     }
-
     playIcon.className = "fa fa-pause play-icon";
-});
-
-backBtn.addEventListener('click', function () {
-    let currentIndex = musics.findIndex(function (item) {
+};
+const backBtnHandler = () => {
+    let currentIndex = musics.findIndex(item => {
         return item.src === music.getAttribute('src');
     });
 
@@ -283,4 +263,15 @@ backBtn.addEventListener('click', function () {
     }
 
     playIcon.className = "fa fa-pause play-icon";
-});
+};
+
+if (muteBtn) {
+    muteBtn.addEventListener('click', muteBtnHandler);
+}
+playButton.addEventListener('click', playButtonHandler);
+volumeCard.addEventListener('click', volumeCardHandler);
+music.addEventListener('timeupdate', musicHandler);
+processBar.addEventListener('click', processBarHandler);
+likeBtn.addEventListener('click', likeBtnHandler);
+forwardBtn.addEventListener('click', forwardBtnHandler);
+backBtn.addEventListener('click', backBtnHandler);
