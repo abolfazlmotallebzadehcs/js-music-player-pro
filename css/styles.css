@@ -879,8 +879,8 @@ h1 {
 
 .musics-container {
   margin-top: 2.5rem;
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  display: flex;
+  /* grid-template-columns: repeat(6, minmax(0, 1fr)); */
   align-items: center;
   gap: 1.25rem;
 }
@@ -1034,4 +1034,13 @@ i {
 
 .bookmark i {
   color: #000;
+}
+
+@media (max-width:900px){
+  .music-details {
+  display: none;
+  }
+  .controls {
+    display: none;
+  }
 }
