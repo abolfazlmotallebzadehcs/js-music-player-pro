@@ -4,8 +4,8 @@
 
   <p><b>A sleek, lightweight audio player built with Vanilla JavaScript and pure CSS.</b></p>
 
-  [![Live Demo](https://img.shields.io/badge/Live_Demo-🚀-38B2AC?style=for-the-badge)](https://abolfazlmotallebzadehcs.github.io/js-music-player/)
-  [![GitHub Repository](https://img.shields.io/badge/Source_Code-💻-7aa2f7?style=for-the-badge)](https://github.com/abolfazlmotallebzadehcs/js-music-player)
+  [![Live Demo](https://img.shields.io/badge/Live_Demo-🚀-38B2AC?style=for-the-badge)](https://abolfazlmotallebzadehcs.github.io/js-music-player-pro/)
+  [![GitHub Repository](https://img.shields.io/badge/Source_Code-💻-7aa2f7?style=for-the-badge)](https://github.com/abolfazlmotallebzadehcs/js-music-player-pro)
 
   <br />
 
