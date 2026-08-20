@@ -879,8 +879,8 @@ h1 {
 
 .musics-container {
   margin-top: 2.5rem;
-  display: flex;
-  /* grid-template-columns: repeat(6, minmax(0, 1fr)); */
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   align-items: center;
   gap: 1.25rem;
 }
@@ -972,7 +972,7 @@ h1 {
 
 button.bookmarked {
   --tw-bg-opacity: 1;
-  background-color: rgb(5 150 105 / var(--tw-bg-opacity));
+  background-color: rgb(9 9 11 / var(--tw-bg-opacity));
 }
 
 button.bookmarked i {
