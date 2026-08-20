@@ -15,12 +15,12 @@ const muteIcon = document.querySelector('.muteIcon');
 
 const playlist = [];
 const musics = [
-    {id:1 , title:"پژواک های نیمه شب" , src:"./audios/1.mp3" , cover:"./images/1.jpg" , singer:"لونا اسکای", isLiked:false},
-    {id:2 , title:"امواج فردا" , src:"./audios/2.mp3" , cover:"./images/2.jpg" , singer:"افق نقره ای", isLiked:false},
-    {id:3 , title:"خاکستر های فروزان" , src:"./audios/3.mp3" , cover:"./images/3.jpg" , singer:"دره اسکارلت", isLiked:false},
-    {id:4 , title:"رویاهای نئونی" , src:"./audios/4.mp3" , cover:"./images/4.jpg" , singer:"سایه الکتریکی", isLiked:false},
-    {id:5 , title:"زمزمه های باد" , src:"./audios/5.mp3" , cover:"./images/5.png" , singer:"اورلیا نایت", isLiked:false},
-    {id:6 , title:"تعقیب غروب" , src:"./audios/6.mp3" , cover:"./images/6.jpg" , singer:"خیال طلایی", isLiked:false},
+    {id:1 , title:"Aperture" , src:"../audios/Aperture - Harry Styles.mp3" , cover:"../images/Aperture - Harry Styles.png" , singer:"Harry Styles", isLiked:false},
+    {id:2 , title:"Back To Back" , src:"../audios/Back To Black - Amy Winehouse.mp3" , cover:"../images/Back To Black - Amy Winehouse.jpg" , singer:"Amy Winehouse", isLiked:false},
+    {id:3 , title:"Circles" , src:"../audios/Circles - Post Malone.mp3" , cover:"../images/Circles - Post Malone.jpg" , singer:"Post Melone", isLiked:false},
+    {id:4 , title:"Gangsta's Paradise" , src:"../audios/Gangsta's Paradise - Coolio  L.V..mp3" , cover:"../images/Gangsta's Paradise - Coolio  L.V..png" , singer:"Collio & L.V.", isLiked:false},
+    {id:5 , title:"River" , src:"../audios/River - Eminem  Ed Sheeran.mp3" , cover:"../images/River - Eminem  Ed Sheeran.jpg" , singer:"Eminem & Ed Sheeran", isLiked:false},
+    {id:6 , title:"Still D.R.E." , src:"../audios/Still D.R.E. - Dr. Dre  Snoop Dogg.mp3" , cover:"../images/Still D.R.E. - Dr. Dre  Snoop Dogg.jpg" , singer:"Dr.Dre & Snoop Dogg", isLiked:false},
 ];
 
 let currentPlayingMusic = null;
